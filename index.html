@@ -3,64 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Antariksh | Valentine Application</title>
+    <title>Antariksh | Official Site</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <section class="hero-split">
-        
-        <div class="left-panel">
-            <div class="content-box" data-aos="fade-right" data-aos-duration="1500">
-                <h1>Hi, <span class="glow">Antariksh</span> here.</h1>
-                <p class="subtitle">First-year Engineering Student at <span class="glow">Poornima University</span>.</p>
-                
-                <div class="bio-text">
-                    <p>I thrive at the intersection of logical code and creative design.</p>
-                    <p>Beyond the screen, I'm a seeker of deep conversations and great music.</p>
-                    <p>Currently navigating the world of engineering with a heart for aesthetics.</p>
-                    <p>I believe every great story starts with a single, bold choice.</p>
-                </div>
-                
-                <div class="scroll-hint">
-                    <p>Scroll for memories ↓</p>
-                </div>
+    <header class="hero-section fade-in">
+        <div class="profile-container">
+            <img src="images/profile.jpg" alt="Antariksh" class="profile-pic" onerror="this.src='https://via.placeholder.com/150'">
+        </div>
+        <h1>Hi, Antariksh here.</h1>
+        <p class="subtitle">1st Year Engineering Student @ Poornima University</p>
+        <p class="bio">
+            Welcome to my personal corner of the internet. I'm an engineer in the making, 
+            a lover of good music, and someone who believes in making genuine connections.
+        </p>
+    </header>
+
+    <section class="gallery-section">
+        <h2>Life Lately</h2>
+        <div class="gallery-grid">
+            <div class="photo-card scroll-hidden">
+                <img src="images/photo1.jpg" alt="Me hanging out" onerror="this.style.display='none'">
             </div>
-        </div>
-
-        <div class="right-panel" id="treeContainer">
-            <canvas id="treeCanvas"></canvas>
-        </div>
-
-    </section>
-
-    <section class="photo-section" id="photos">
-        <h2 class="glow" data-aos="zoom-in">Moments & Memories</h2>
-        <div class="photo-grid">
-            <div class="photo-card" data-aos="flip-left"></div>
-            <div class="photo-card" data-aos="flip-right"></div>
-            <div class="photo-card" data-aos="flip-left"></div>
-            <div class="photo-card" data-aos="flip-right"></div>
+            <div class="photo-card scroll-hidden">
+                <img src="images/photo2.jpg" alt="Travel" onerror="this.style.display='none'">
+            </div>
+            <div class="photo-card scroll-hidden">
+                <img src="images/photo3.jpg" alt="Hobbies" onerror="this.style.display='none'">
+            </div>
+            <div class="photo-card scroll-hidden">
+                <img src="images/photo4.jpg" alt="Friends" onerror="this.style.display='none'">
+            </div>
         </div>
     </section>
 
     <section class="matrix-section">
-        <h2 data-aos="fade-down">Will you be my Valentine?</h2>
-        <div class="pill-container">
-            <div class="hand-wrapper" id="noHand">
-                <div class="pill blue">No</div>
-                <p>Stay in reality</p>
-            </div>
+        <h2>Now, I have a question...</h2>
+        <h1 class="big-question">Will you be my Valentine?</h1>
+        
+        <div class="hands-container">
+            <a href="application.html" class="hand-wrapper">
+                <div class="hand">🫴</div>
+                <div class="pill red-pill">
+                    <span>YES</span>
+                </div>
+            </a>
 
-            <div class="hand-wrapper" onclick="window.location.href='apply.html'">
-                <div class="pill red">Yes</div>
-                <p>Take the leap</p>
+            <div class="hand-wrapper" id="bluePillWrapper">
+                <div class="hand">🫴</div>
+                <div class="pill blue-pill">
+                    <span>NO</span>
+                </div>
             </div>
         </div>
+        <p class="matrix-subtext">The choice is yours.</p>
     </section>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
