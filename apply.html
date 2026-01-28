@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Antariksh</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="form-body">
+    <section class="form-container">
+        <h1 class="glow">Application Form</h1>
+        <form action="https://formspree.io/f/xeekqrgy" method="POST">
+            <input type="text" name="name" placeholder="Name" required>
+            <div class="row">
+                <input type="number" name="age" placeholder="Age" required>
+                <input type="text" name="gender" placeholder="Gender" required>
+            </div>
+            <input type="text" name="branch" placeholder="Engineering Branch (e.g. CS, ME)" required>
+            <input type="tel" name="whatsapp" placeholder="WhatsApp Number" required>
+            
+            <label>About You</label>
+            <textarea name="about" placeholder="Example: My favorite song is 'Starboy', I love late-night walks, and I'm a coffee person..." required></textarea>
+            
+            <button type="submit" class="apply-btn">Submit Application</button>
+        </form>
+        <a href="index.html" style="color: white; margin-top: 20px; text-decoration: none;">← Go Back</a>
+    </section>
+</body>
+</html>
