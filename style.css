@@ -524,3 +524,588 @@ footer {
     .playlist-links { grid-template-columns: 1fr; gap: 30px; }
     .playlist-tile img { height: 220px; }
 }
+
+
+
+
+/* --- GAMES SECTION --- */
+.section.games {
+    max-width: 100%;
+    width: 100%;
+    padding: 50px 0;
+    overflow: hidden;
+    background: #000;
+}
+
+.game-wrapper {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+}
+
+.game-row {
+    display: flex;
+    gap: 30px; /* Space between games */
+    width: max-content; /* Row can be as wide as it needs */
+    will-change: transform;
+    padding-left: 50px; /* Initial offset */
+}
+
+.game-row img {
+    height: 400px;         /* Tall and immersive */
+    width: 700px;          /* Widescreen cinematic look */
+    object-fit: cover;
+    border-radius: 20px;
+    flex-shrink: 0;
+    filter: brightness(0.6); /* Dimmed until hover */
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.game-row img:hover {
+    filter: brightness(1); /* Light up on hover */
+    transform: scale(1.05);
+    z-index: 2;
+    box-shadow: 0 20px 50px rgba(255, 77, 109, 0.4);
+}
+
+
+
+/* --- TESTIMONIALS SECTION (LIVELY & REAL) --- */
+.section.testimonials {
+    padding: 100px 50px;
+    text-align: center;
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive Grid */
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.test-card {
+    background: rgba(255, 255, 255, 0.03); /* Very subtle transparent white */
+    backdrop-filter: blur(10px);          /* The "Glass" blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: left;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover Effect: Lifts up and glows pink */
+.test-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--pink);
+    box-shadow: 0 10px 40px rgba(255, 77, 109, 0.2);
+}
+
+/* The Stars */
+.stars {
+    color: #ffd700; /* Gold color */
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* The Review Text */
+.test-card p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #ddd;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+/* Reviewer Info at the bottom */
+.reviewer {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.reviewer .avatar {
+    width: 50px;
+    height: 50px;
+    background: var(--pink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.reviewer .details h4 {
+    font-size: 1rem;
+    margin-bottom: 2px;
+    color: white;
+}
+
+.reviewer .details span {
+    font-size: 0.85rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- TIMELINE SECTION --- */
+.timeline-section {
+    padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* The vertical line */
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: var(--pink);
+    top: 0;
+    bottom: 0;
+    left: 20px; /* Align to the left side */
+    margin-left: -3px;
+    box-shadow: 0 0 10px var(--pink);
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+/* The Dots */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: auto;
+    left: 8px; /* On top of the line */
+    background-color: #000;
+    border: 4px solid var(--pink);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+    transition: 0.3s;
+}
+
+.timeline-item:hover::after {
+    background-color: var(--pink);
+    transform: scale(1.3);
+}
+
+.timeline-item .time {
+    font-weight: bold;
+    color: var(--pink);
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.timeline-item .content {
+    padding: 20px 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+}
+
+.timeline-item:hover .content {
+    transform: translateX(10px);
+    border-color: var(--pink);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- FAQ SECTION --- */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.faq-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: left;
+}
+
+.faq-card:hover {
+    border-color: var(--pink);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.faq-card summary {
+    font-size: 1.2rem;
+    font-weight: bold;
+    list-style: none; /* Hides default triangle */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Custom Plus Icon */
+.faq-card summary::after {
+    content: '+';
+    font-size: 1.5rem;
+    color: var(--pink);
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Rotate icon when open */
+.faq-card[open] summary::after {
+    transform: rotate(45deg);
+}
+
+.faq-card p {
+    margin-top: 15px;
+    color: #ccc;
+    line-height: 1.6;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 15px;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+
+/* --- PROPOSAL & CONTACT SECTION --- */
+.proposal-section {
+    padding: 100px 20px;
+    text-align: center;
+    min-height: 80vh; /* Takes up most of the screen */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* The "Will You Be My Valentine" Box */
+.proposal-box h2 {
+    font-size: 3.5rem;
+    margin-bottom: 40px;
+}
+
+.proposal-buttons {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.btn-yes, .btn-no {
+    padding: 20px 50px;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-yes {
+    background-color: var(--pink);
+    color: white;
+    box-shadow: 0 0 20px var(--pink);
+}
+
+.btn-yes:hover {
+    transform: scale(1.1);
+    background-color: #ff2a55;
+}
+
+.btn-no {
+    background-color: #333;
+    color: white;
+}
+
+.btn-no:hover {
+    background-color: #555;
+    transform: translateX(5px); /* Funny "shaking" effect or movement */
+}
+
+/* The Hidden Form Container */
+.application-form-container {
+    max-width: 700px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* Animation setup */
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-in-out;
+}
+
+/* Class to Reveal the Form */
+.application-form-container.reveal {
+    max-height: 1000px; /* Large enough to fit content */
+    opacity: 1;
+    transform: translateY(0);
+    margin-top: 30px;
+}
+
+/* Form Fields Styling */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+    margin-top: 30px;
+}
+
+.input-row {
+    display: flex;
+    gap: 20px;
+}
+
+/* Mobile responsive for row */
+@media (max-width: 600px) {
+    .input-row { flex-direction: column; }
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.input-group label {
+    font-weight: bold;
+    color: var(--pink);
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+
+.input-group input, 
+.input-group textarea {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid #444;
+    border-radius: 10px;
+    padding: 15px;
+    color: white;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.input-group input:focus, 
+.input-group textarea:focus {
+    border-color: var(--pink);
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 77, 109, 0.2);
+}
+
+.submit-btn {
+    margin-top: 10px;
+    width: 100%;
+    padding: 18px;
+    font-size: 1.2rem;
+}
+
+
+
+
+/* =========================================
+   MOBILE OPTIMIZATION PATCH
+   (Paste this at the very bottom of style.css)
+   ========================================= */
+
+@media (max-width: 768px) {
+    
+    /* 1. Fix Navigation Bar */
+    nav {
+        padding: 15px 20px; /* Smaller padding */
+    }
+    .logo {
+        font-size: 1.2rem;
+    }
+    .btn-primary {
+        padding: 8px 15px; /* Smaller button */
+        font-size: 0.9rem;
+    }
+
+    /* 2. Fix Hero Text (It was too huge) */
+    .hero-content {
+        flex-direction: column-reverse; /* Put image on top, text below */
+        text-align: center;
+        padding-top: 100px;
+    }
+    .text-container h1 {
+        font-size: 3rem; /* Shrink from 5rem to 3rem */
+    }
+    .image-container img {
+        width: 250px; /* Smaller avatar */
+        height: 250px;
+        margin-bottom: 30px;
+    }
+
+    /* 3. Fix Section Padding */
+    .section {
+        padding: 60px 20px; /* Less empty space on sides */
+    }
+    h2 {
+        font-size: 2.5rem; /* Smaller section headers */
+        margin-bottom: 40px;
+    }
+
+    /* 4. Fix Photo & Game Gallery Heights */
+    /* On mobile, 450px height is too tall, let's make it compact */
+    .gallery-row img, 
+    .game-row img {
+        height: 250px; 
+        width: 350px; /* Proportional width */
+    }
+    .gallery-wrapper {
+        gap: 20px;
+    }
+
+    /* 5. Fix About & Testimonial Grids */
+    .about-grid, 
+    .project-grid, 
+    .testimonial-grid {
+        grid-template-columns: 1fr; /* Force single column */
+    }
+
+    /* 6. Fix "Will You Be My Valentine" Buttons */
+    .proposal-buttons {
+        flex-direction: column; /* Stack buttons vertically */
+        width: 100%;
+        gap: 15px;
+    }
+    .btn-yes, .btn-no {
+        width: 100%; /* Full width buttons for easy tapping */
+    }
+    .proposal-box h2 {
+        font-size: 2.5rem;
+    }
+
+    /* 7. Fix Form Layout */
+    .input-row {
+        flex-direction: column;
+    }
+    
+    /* 8. Fix Timeline Line */
+    .timeline::after {
+        left: 10px;
+    }
+    .timeline-item::after {
+        left: -2px;
+    }
+    .timeline-item {
+        padding-left: 30px;
+        padding-right: 0;
+    }
+}
+
+
+
+
+/* --- FOOTER --- */
+footer {
+    background: #050505; /* Slightly darker background for contrast */
+    padding: 50px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* Stacks icons above text */
+    align-items: center;
+    gap: 20px;
+    border-top: 1px solid #222;
+}
+
+.social-icons {
+    display: flex;
+    gap: 30px; /* Space between icons */
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    color: var(--pink); /* This makes them PINK as requested */
+    font-size: 2rem;    /* Nice and big */
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icons a:hover {
+    transform: translateY(-5px) scale(1.1); /* Floats up slightly */
+    text-shadow: 0 0 20px var(--pink);      /* Glowing Pink Effect */
+    color: white; /* Flashes white on hover for impact */
+}
+
+footer p {
+    color: #666;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+footer i.fa-heart {
+    color: var(--pink);
+    animation: heartbeat 1.5s infinite; /* Adds a cute heartbeat animation */
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    15% { transform: scale(1.3); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}

@@ -96,3 +96,60 @@ function updateCarousel(newIndex) {
 
 // Run once on load
 updateCarousel(activeIndex);
+
+
+
+
+
+
+const gameRow = document.querySelector('.game-row'); // Select the new game row
+
+window.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY;
+
+    // --- PHOTO GALLERY LOGIC ---
+    // Speed for photos
+    const photoSpeed = 0.2; 
+    
+    // Check if elements exist before moving them (prevents errors)
+    if(row1) row1.style.transform = `translateX(-${scrollPosition * photoSpeed}px)`;
+    if(row2) row2.style.transform = `translateX(calc(-20% + ${scrollPosition * photoSpeed}px))`;
+
+    // --- NEW GAME ROW LOGIC ---
+    if(gameRow) {
+        // We use a slightly faster speed (0.35) for a more dynamic "gaming" feel
+        // The negative sign (-) makes it move Right to Left
+        gameRow.style.transform = `translateX(-${scrollPosition * 0.35}px)`;
+    }
+});
+
+
+
+
+
+
+// --- PROPOSAL LOGIC ---
+
+function showForm() {
+    const formContainer = document.getElementById('applicationForm');
+    const btnYes = document.querySelector('.btn-yes');
+    
+    // Reveal the form
+    formContainer.classList.add('reveal');
+    
+    // Change button text to show success
+    btnYes.innerHTML = 'GOOD CHOICE! 👇';
+    btnYes.style.pointerEvents = 'none'; // Prevent clicking again
+    
+    // Smooth scroll to the form
+    setTimeout(() => {
+        formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+}
+
+function rejectLove() {
+    // Redirect to a sad/funny video
+    // Current link is "Sad Hamster Meme" or similar. You can change it.
+    window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; 
+    // ^ TIP: Change this link to whatever video you want!
+}
