@@ -153,3 +153,47 @@ function rejectLove() {
     window.location.href = "https://youtu.be/6EEW-9NDM5k?si=wXR7fxJDPJ68Ojkh&t=13"; 
     // ^ TIP: Change this link to whatever video you want!
 }
+
+
+// --- MOBILE SWIPE LOGIC FOR MUSIC CAROUSEL ---
+
+const track = document.querySelector('.carousel-container');
+let startX = 0;
+let endX = 0;
+
+// 1. Detect where the touch starts
+track.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+});
+
+// 2. Detect where the finger moves
+track.addEventListener('touchmove', (e) => {
+    endX = e.touches[0].clientX;
+});
+
+// 3. Detect when the touch ends and calculate direction
+track.addEventListener('touchend', () => {
+    // If no movement happened, exit
+    if (startX === 0 || endX === 0) return;
+
+    // Calculate the difference
+    const diff = startX - endX;
+    const threshold = 50; // Minimum swipe distance (pixels)
+
+    if (diff > threshold) {
+        // Swiped Left -> Go to Next Song
+        let nextIndex = activeIndex + 1;
+        if (nextIndex >= totalItems) nextIndex = 0; // Loop to start
+        updateCarousel(nextIndex);
+    } else if (diff < -threshold) {
+        // Swiped Right -> Go to Previous Song
+        let prevIndex = activeIndex - 1;
+        if (prevIndex < 0) prevIndex = totalItems - 1; // Loop to end
+        updateCarousel(prevIndex);
+    }
+
+    // Reset values for next swipe
+    startX = 0;
+    endX = 0;
+});
+
