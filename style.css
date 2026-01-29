@@ -24,14 +24,7 @@ h1, h2 {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* SECTION 1: PROFILE HERO */
-.hero-section {
-    padding: 80px 20px;
-    background: white;
-    border-bottom-left-radius: 50px;
-    border-bottom-right-radius: 50px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
+
 
 .profile-container {
     width: 150px;
@@ -234,4 +227,89 @@ input:focus, textarea:focus {
     font-size: 1.2rem;
     cursor: pointer;
     font-weight: bold;
+}
+
+
+/* --- REPLACE THE OLD HERO SECTION WITH THIS --- */
+
+/* Split Layout Hero Section */
+.hero-split-section {
+    display: flex;
+    flex-direction: row; /* Side by side */
+    align-items: center; /* Center vertically */
+    justify-content: space-between;
+    min-height: 100vh; /* Full screen height */
+    padding: 0 5%; /* breathing room on sides */
+    background: linear-gradient(to right, #fff0f3, #ffe3e8);
+    overflow: hidden; /* Keep the tree leaves inside */
+}
+
+/* Left Side: Text */
+.hero-left-content {
+    flex: 1; /* Takes up 50% space */
+    text-align: left; /* Aligns text to the left */
+    padding-right: 20px;
+    z-index: 2;
+}
+
+.hero-left-content h1 {
+    font-size: 3rem;
+    margin: 10px 0;
+}
+
+.hero-left-content .subtitle {
+    font-size: 1.1rem;
+    color: #c9184a;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.bio-box {
+    background: rgba(255, 255, 255, 0.6); /* Glass effect */
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 5px solid #ff4d6d;
+}
+
+.bio-box p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #590d22;
+    margin: 0;
+}
+
+/* Right Side: Visual (Tree) */
+.hero-right-visual {
+    flex: 1; /* Takes up 50% space */
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Tree sits at the bottom */
+    position: relative;
+}
+
+canvas#treeCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Mobile Responsiveness: Stack them on small screens */
+@media (max-width: 768px) {
+    .hero-split-section {
+        flex-direction: column-reverse; /* Tree on top, text below on mobile */
+        padding: 40px 20px;
+        text-align: center;
+        height: auto;
+    }
+
+    .hero-left-content {
+        text-align: center;
+        margin-top: -50px; /* Pull text up over the tree slightly */
+    }
+
+    .hero-right-visual {
+        height: 50vh; /* Smaller tree on mobile */
+        width: 100%;
+    }
 }
