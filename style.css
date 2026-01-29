@@ -370,115 +370,119 @@ footer {
 
 
 
-/* --- FAVORITE SONGS SECTION --- */
+/* --- FAVORITE SONGS SECTION (COVER FLOW) --- */
 .favorite-songs {
     text-align: center;
-    overflow: hidden; /* Prevents horizontal scrollbar on main page */
+    overflow: hidden;
+    padding-bottom: 50px;
 }
 
-/* Stacked Tiles Wrapper */
-.song-stack-wrapper {
-    height: 450px; /* Height of the 3D area */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    margin-bottom: 100px;
-    perspective: 1000px; /* Creates the 3D depth */
+    perspective: 1000px; /* Essential for 3D effect */
+    margin-bottom: 50px;
 }
 
-.song-stack {
+.carousel-track {
     position: relative;
-    width: 320px;  /* Width of the main tile */
-    height: 320px; /* Height of the main tile */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Subtle hover animation for the whole stack */
-    transition: transform 0.5s ease;
-}
-.song-stack:hover {
-    transform: translateY(-10px);
+    width: 300px; /* Width of the central image */
+    height: 300px;
+    transform-style: preserve-3d;
 }
 
-/* Base Tile Style */
-.song-tile {
+.carousel-item {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 25px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth, snappy transition */
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth snapping */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    background: #000;
 }
 
-.song-tile img {
+.carousel-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    pointer-events: none; /* Prevents dragging image instead of clicking div */
 }
 
-/* Stacking Logic - Primary (Center) */
-.song-tile.primary {
+/* --- DYNAMIC CLASSES (Applied by JS) --- */
+
+/* 1. Center Item (Active) */
+.carousel-item.active {
+    transform: translateX(0) scale(1.2);
     z-index: 10;
-    transform: scale(1.15); /* Make it biggest */
     opacity: 1;
-    box-shadow: 0 30px 60px rgba(255, 77, 109, 0.5); /* Strong pink glow */
+    box-shadow: 0 20px 50px rgba(255, 77, 109, 0.6); /* Pink glow */
+    border: 2px solid rgba(255,255,255,0.2);
 }
 
-/* Stacking Logic - Secondary (Middle) */
-.song-tile.secondary {
+/* 2. Immediate Neighbors (Left & Right) */
+.carousel-item.prev-1 {
+    transform: translateX(-220px) scale(0.9) rotateY(25deg);
     z-index: 5;
     opacity: 0.7;
-    filter: brightness(0.6) blur(1px); /* Dim and slightly blur */
+    filter: brightness(0.6);
 }
-.song-tile.secondary.left {
-    transform: translateX(-200px) scale(0.95) rotateY(20deg);
-}
-.song-tile.secondary.right {
-    transform: translateX(200px) scale(0.95) rotateY(-20deg);
-}
-
-/* Stacking Logic - Tertiary (Back) */
-.song-tile.tertiary {
-    z-index: 1;
-    opacity: 0.5;
-    filter: brightness(0.4) blur(2px); /* Dimmer and blurrier */
-}
-.song-tile.tertiary.left {
-    transform: translateX(-360px) scale(0.8) rotateY(30deg);
-}
-.song-tile.tertiary.right {
-    transform: translateX(360px) scale(0.8) rotateY(-30deg);
+.carousel-item.next-1 {
+    transform: translateX(220px) scale(0.9) rotateY(-25deg);
+    z-index: 5;
+    opacity: 0.7;
+    filter: brightness(0.6);
 }
 
-/* Song Info Overlay on Primary Tile */
-.song-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 25px;
-    background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
-    text-align: left;
+/* 3. Outer Neighbors (Further back) */
+.carousel-item.prev-2 {
+    transform: translateX(-380px) scale(0.7) rotateY(35deg);
+    z-index: 2;
+    opacity: 0.4;
+    filter: brightness(0.4);
 }
-.song-info h3 {
-    font-size: 1.6rem;
-    margin-bottom: 5px;
-    color: var(--pink);
+.carousel-item.next-2 {
+    transform: translateX(380px) scale(0.7) rotateY(-35deg);
+    z-index: 2;
+    opacity: 0.4;
+    filter: brightness(0.4);
 }
 
+/* 4. Hidden items (Everything else) */
+.carousel-item.hidden {
+    transform: scale(0);
+    opacity: 0;
+    pointer-events: none;
+}
 
-/* --- PLAYLIST LINKS --- */
+/* --- MOBILE ADJUSTMENTS --- */
+@media (max-width: 768px) {
+    .carousel-track {
+        width: 200px;
+        height: 200px;
+    }
+    .carousel-item.prev-1 { transform: translateX(-140px) scale(0.85) rotateY(15deg); }
+    .carousel-item.next-1 { transform: translateX(140px) scale(0.85) rotateY(-15deg); }
+    .carousel-item.prev-2 { transform: translateX(-240px) scale(0.7); opacity: 0; } /* Hide outer ones on mobile */
+    .carousel-item.next-2 { transform: translateX(240px) scale(0.7); opacity: 0; }
+}
+
+/* --- PLAYLIST LINKS (Unchanged) --- */
 .playlist-links {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Three columns for desktop */
+    grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     padding: 0 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
-
 .playlist-tile {
     display: block;
     position: relative;
@@ -487,12 +491,10 @@ footer {
     text-decoration: none;
     transition: all 0.4s ease;
 }
-
 .playlist-tile:hover {
     transform: translateY(-15px);
     box-shadow: 0 20px 40px rgba(255, 77, 109, 0.3);
 }
-
 .playlist-tile img {
     width: 100%;
     height: 280px;
@@ -500,12 +502,10 @@ footer {
     filter: brightness(0.7);
     transition: 0.4s;
 }
-
 .playlist-tile:hover img {
     filter: brightness(1);
     transform: scale(1.05);
 }
-
 .playlist-info {
     position: absolute;
     bottom: 0;
@@ -518,65 +518,9 @@ footer {
     justify-content: space-between;
     align-items: center;
 }
-
-.playlist-info h3 {
-    font-size: 1.5rem;
-}
-
-.playlist-info p {
-    color: var(--pink);
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-
-/* --- MOBILE RESPONSIVENESS --- */
+.playlist-info h3 { font-size: 1.5rem; }
+.playlist-info p { color: var(--pink); font-weight: bold; font-size: 1.1rem; }
 @media (max-width: 900px) {
-    /* Flatten and scroll the song stack */
-    .song-stack-wrapper {
-        height: auto;
-        overflow-x: auto; /* Enable horizontal scroll */
-        padding: 30px 0;
-        perspective: none; /* Remove 3D */
-        /* Hide scrollbar for cleaner look */
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
-    }
-    .song-stack-wrapper::-webkit-scrollbar {
-        display: none; /* Chrome, Safari, Opera */
-    }
-    
-    .song-stack {
-        display: flex;
-        gap: 25px;
-        width: auto;
-        height: auto;
-        padding: 0 30px; /* Add padding for scroll snapping */
-    }
-
-    .song-tile {
-        position: relative; /* Not absolute anymore */
-        width: 240px;
-        height: 240px;
-        flex-shrink: 0; /* Don't squish */
-        transform: none !important; /* Reset all 3D transforms */
-        opacity: 1 !important;
-        filter: brightness(0.8); /* Slightly dim all */
-        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    }
-    
-    /* Make the primary one stand out a bit */
-    .song-tile.primary {
-        transform: scale(1.08) !important;
-        filter: brightness(1);
-        box-shadow: 0 15px 30px rgba(255, 77, 109, 0.4);
-    }
-    
-    /* Stack playlists vertically */
-    .playlist-links {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    .playlist-tile img {
-        height: 220px; /* Slightly shorter for mobile */
-    }
+    .playlist-links { grid-template-columns: 1fr; gap: 30px; }
+    .playlist-tile img { height: 220px; }
 }
