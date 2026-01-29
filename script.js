@@ -150,6 +150,6 @@ function showForm() {
 function rejectLove() {
     // Redirect to a sad/funny video
     // Current link is "Sad Hamster Meme" or similar. You can change it.
-    window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; 
+    window.location.href = "https://youtu.be/6EEW-9NDM5k?si=wXR7fxJDPJ68Ojkh&t=13"; 
     // ^ TIP: Change this link to whatever video you want!
 }
