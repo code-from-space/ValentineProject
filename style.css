@@ -1,315 +1,582 @@
-/* GLOBAL SETTINGS */
-body {
+/* RESET & BASICS */
+* {
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat', sans-serif;
-    background-color: #fff0f3; /* Cute Pink Theme Base */
-    color: #590d22;
-    text-align: center;
+    box-sizing: border-box;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    cursor: default;
+}
+
+body {
+    background-color: #0a0a0a;
+    color: #ffffff;
     overflow-x: hidden;
 }
 
-h1, h2 {
-    font-family: 'Pacifico', cursive;
-    color: #c9184a;
+/* THEME COLORS */
+:root {
+    --pink: #ff4d6d;
+    --red: #d90429;
+    --dark: #161616;
 }
 
-/* FADE IN ANIMATION FOR PAGE LOAD */
-.fade-in {
-    animation: fadeIn 1.5s ease-in;
-}
+.pink { color: var(--pink); }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+a { text-decoration: none; color: inherit; cursor: pointer; }
+ul { list-style: none; }
 
-
-
-.profile-container {
-    width: 150px;
-    height: 150px;
-    margin: 0 auto 20px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 5px solid #ffccd5;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.profile-pic {
+/* NAVBAR */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    position: fixed;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.8);
+    backdrop-filter: blur(10px);
 }
 
-.subtitle {
-    font-weight: 600;
-    color: #a4133c;
-    margin-top: -10px;
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
 }
 
-.bio {
-    max-width: 600px;
-    margin: 20px auto;
-    line-height: 1.6;
-    color: #555;
+/* BUTTONS */
+.btn-primary {
+    background: var(--pink);
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
 }
 
-/* SECTION 2: GALLERY GRID */
-.gallery-section {
-    padding: 60px 20px;
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--pink);
 }
 
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Auto layouts */
-    gap: 20px;
-    max-width: 1000px;
+.btn-large {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 40px;
+    border: 2px solid var(--pink);
+    border-radius: 50px;
+    font-size: 1.2rem;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.btn-large:hover {
+    background: var(--pink);
+    color: white;
+}
+
+/* HERO SECTION */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 50px;
+    position: relative;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.text-container h1 {
+    font-size: 5rem;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.text-container p {
+    font-size: 1.2rem;
+    color: #aaa;
+    margin-bottom: 30px;
+}
+
+.image-container img {
+    width: 400px;
+    height: 400px;
+    object-fit: contain;
+    /* Floating Animation */
+    animation: float 6s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(255, 77, 109, 0.4));
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+/* MARQUEE */
+.marquee {
+    background: var(--pink);
+    padding: 15px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transform: rotate(-2deg) scale(1.1);
+}
+
+.track {
+    display: inline-block;
+    animation: scroll 20s linear infinite;
+}
+
+.track span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+    text-transform: uppercase;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* GENERAL SECTION STYLES */
+.section {
+    padding: 100px 50px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-.photo-card {
-    border-radius: 15px;
+h2 {
+    font-size: 4rem;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+}
+
+/* CARDS (About & Testimonials) */
+.glass {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: 0.3s;
+}
+
+.glass:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-10px);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.icon {
+    font-size: 3rem;
+    color: var(--pink);
+    margin-bottom: 20px;
+}
+
+/* SERVICES LIST */
+.service-item {
+    border-top: 1px solid #333;
+    padding: 40px 0;
+    display: flex;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.service-item:hover {
+    padding-left: 20px;
+    background: rgba(255,255,255,0.02);
+}
+
+.service-item .num {
+    font-size: 1.5rem;
+    color: var(--pink);
+    margin-right: 30px;
+}
+
+.service-item h3 {
+    font-size: 2rem;
+    flex-grow: 1;
+}
+
+/* PROJECT GRID */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.project-card {
+    height: 300px;
+    background: #222;
+    border-radius: 20px;
+    position: relative;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    transition: 0.5s;
+    cursor: pointer;
 }
 
-.photo-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+/* Add dummy background images for cards */
+.project-card:nth-child(1) { background: linear-gradient(45deg, #222, #444); } 
+.project-card:nth-child(2) { background: linear-gradient(45deg, #222, #555); }
+.project-card:nth-child(3) { background: linear-gradient(45deg, #222, #666); }
+
+.project-card:hover {
+    transform: scale(0.98);
 }
 
-/* Scroll Animation Classes */
-.scroll-hidden {
+/* CONTACT */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+}
+
+input, textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #333;
+    padding: 20px 0;
+    color: white;
+    font-size: 1.2rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus, textarea:focus {
+    border-bottom-color: var(--pink);
+}
+
+footer {
+    text-align: center;
+    padding: 50px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* ANIMATION UTILITY (JS will trigger this) */
+.hidden {
     opacity: 0;
     transform: translateY(50px);
-    transition: all 0.8s ease-out;
+    transition: all 1s ease-out;
 }
 
-.scroll-visible {
+.show {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* SECTION 3: MATRIX PILLS */
-.matrix-section {
-    padding: 100px 20px;
-    background: linear-gradient(to bottom, #fff0f3, #ffccd5);
-    min-height: 60vh;
+
+/* PHOTO GALLERY */
+.photo-gallery {
+    /* Ensure images don't spill out of the website width */
+    overflow: hidden; 
+    padding-bottom: 50px;
+}
+
+.gallery-wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    gap: 20px; /* Space between the top and bottom rows */
 }
 
-.big-question {
-    font-size: 2.5rem;
-    margin-bottom: 50px;
-}
-
-.hands-container {
+.gallery-row {
     display: flex;
-    gap: 50px;
-    justify-content: center;
-    align-items: flex-end;
+    gap: 20px; /* Space between images side-by-side */
+    width: fit-content; /* Allow row to be wider than the screen */
+    will-change: transform; /* Optimizes performance for scrolling */
 }
 
-.hand-wrapper {
-    position: relative;
-    cursor: pointer;
-    text-decoration: none;
-    transition: transform 0.4s ease;
-}
-
-/* The Hand Emoji styling */
-.hand {
-    font-size: 5rem;
-    transform: rotate(-90deg); /* Make hand look like it's offering */
-}
-
-/* The Pills */
-.pill {
-    position: absolute;
-    top: -20px; /* Floating above hand */
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 10px 30px;
-    border-radius: 30px;
-    color: white;
-    font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
-    z-index: 10;
-}
-
-.red-pill {
-    background: linear-gradient(135deg, #ff4d6d, #800f2f);
-    border: 2px solid #fff;
-}
-
-.blue-pill {
-    background: linear-gradient(135deg, #48cae4, #023e8a);
-    border: 2px solid #fff;
-}
-
-/* Animation: Hover on Hand Wrapper moves hand forward and pill floats up */
-.hand-wrapper:hover {
-    transform: scale(1.1) translateY(-10px); /* Hand moves forward/up */
-}
-
-.hand-wrapper:hover .pill {
-    box-shadow: 0 0 20px rgba(255, 77, 109, 0.8); /* Glow effect */
-}
-
-/* APPLICATION FORM PAGE STYLES */
-.form-page-container {
-    max-width: 600px;
-    margin: 40px auto;
-    background: white;
-    padding: 40px;
+.gallery-row img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover; /* Ensures photos don't stretch weirdly */
     border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    flex-shrink: 0; /* Prevents images from squishing together */
+    filter: grayscale(30%); /* Adds a slight moody vibe like the video */
+    transition: 0.3s;
 }
 
-.form-group {
-    text-align: left;
-    margin-bottom: 20px;
+.gallery-row img:hover {
+    filter: grayscale(0%);
+    transform: scale(1.02);
 }
 
-.row {
+/* Initial positioning for Row 2 so it has room to move right */
+.row-2 {
+    transform: translateX(-20%);
+}
+
+
+/* PHOTO GALLERY (FULL WIDTH & LARGER) */
+.section.photo-gallery {
+    max-width: 100%;      /* Overrides the default centered layout */
+    width: 100%;          /* Forces full screen width */
+    padding: 80px 0;      /* Adds vertical breathing room, removes side padding */
+    overflow: hidden;     /* Hides the scrollbar for the moving images */
+    background: #000;     /* Optional: Ensures seamless background */
+}
+
+.gallery-wrapper {
     display: flex;
-    gap: 20px;
-}
-.half {
-    width: 50%;
+    flex-direction: column;
+    gap: 40px;            /* Increased gap between the two rows */
 }
 
-label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 8px;
-    color: #800f2f;
-}
-
-input, select, textarea {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #ffccd5;
-    border-radius: 10px;
-    font-family: inherit;
-    box-sizing: border-box;
-}
-
-input:focus, textarea:focus {
-    outline: none;
-    border-color: #ff4d6d;
-}
-
-.hint {
-    font-size: 0.8rem;
-    color: #888;
-    margin-top: -5px;
-    margin-bottom: 10px;
-    font-style: italic;
-}
-
-.submit-btn {
-    width: 100%;
-    padding: 15px;
-    background-color: #ff4d6d;
-    color: white;
-    border: none;
-    border-radius: 50px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-
-/* --- REPLACE THE OLD HERO SECTION WITH THIS --- */
-
-/* Split Layout Hero Section */
-.hero-split-section {
+.gallery-row {
     display: flex;
-    flex-direction: row; /* Side by side */
-    align-items: center; /* Center vertically */
-    justify-content: space-between;
-    min-height: 100vh; /* Full screen height */
-    padding: 0 5%; /* breathing room on sides */
-    background: linear-gradient(to right, #fff0f3, #ffe3e8);
-    overflow: hidden; /* Keep the tree leaves inside */
+    gap: 30px;            /* Space between images side-by-side */
+    width: max-content;   /* Allows row to be as wide as needed */
+    will-change: transform; 
 }
 
-/* Left Side: Text */
-.hero-left-content {
-    flex: 1; /* Takes up 50% space */
-    text-align: left; /* Aligns text to the left */
-    padding-right: 20px;
+.gallery-row img {
+    height: 450px;        /* Much taller images for that "filling" look */
+    width: 600px;         /* Wider images to match the new height */
+    object-fit: cover;    /* Ensures the image fills the box without distorting */
+    border-radius: 15px;  /* Slightly softer corners */
+    flex-shrink: 0;       
+    filter: grayscale(20%) brightness(0.8); /* Cinematic styling */
+    transition: all 0.4s ease;
+}
+
+.gallery-row img:hover {
+    filter: grayscale(0%) brightness(1);
+    transform: scale(1.03); /* Subtle zoom effect on hover */
     z-index: 2;
 }
 
-.hero-left-content h1 {
-    font-size: 3rem;
-    margin: 10px 0;
+/* Initial positioning for Row 2 */
+.row-2 {
+    transform: translateX(-20%);
 }
 
-.hero-left-content .subtitle {
-    font-size: 1.1rem;
-    color: #c9184a;
-    font-weight: bold;
-    margin-bottom: 20px;
+
+
+/* --- FAVORITE SONGS SECTION --- */
+.favorite-songs {
+    text-align: center;
+    overflow: hidden; /* Prevents horizontal scrollbar on main page */
 }
 
-.bio-box {
-    background: rgba(255, 255, 255, 0.6); /* Glass effect */
-    padding: 20px;
-    border-radius: 15px;
-    border-left: 5px solid #ff4d6d;
-}
-
-.bio-box p {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: #590d22;
-    margin: 0;
-}
-
-/* Right Side: Visual (Tree) */
-.hero-right-visual {
-    flex: 1; /* Takes up 50% space */
-    height: 90vh;
+/* Stacked Tiles Wrapper */
+.song-stack-wrapper {
+    height: 450px; /* Height of the 3D area */
     display: flex;
     justify-content: center;
-    align-items: flex-end; /* Tree sits at the bottom */
+    align-items: center;
     position: relative;
+    margin-bottom: 100px;
+    perspective: 1000px; /* Creates the 3D depth */
 }
 
-canvas#treeCanvas {
+.song-stack {
+    position: relative;
+    width: 320px;  /* Width of the main tile */
+    height: 320px; /* Height of the main tile */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Subtle hover animation for the whole stack */
+    transition: transform 0.5s ease;
+}
+.song-stack:hover {
+    transform: translateY(-10px);
+}
+
+/* Base Tile Style */
+.song-tile {
+    position: absolute;
     width: 100%;
     height: 100%;
-    display: block;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth, snappy transition */
 }
 
-/* Mobile Responsiveness: Stack them on small screens */
-@media (max-width: 768px) {
-    .hero-split-section {
-        flex-direction: column-reverse; /* Tree on top, text below on mobile */
-        padding: 40px 20px;
-        text-align: center;
+.song-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Stacking Logic - Primary (Center) */
+.song-tile.primary {
+    z-index: 10;
+    transform: scale(1.15); /* Make it biggest */
+    opacity: 1;
+    box-shadow: 0 30px 60px rgba(255, 77, 109, 0.5); /* Strong pink glow */
+}
+
+/* Stacking Logic - Secondary (Middle) */
+.song-tile.secondary {
+    z-index: 5;
+    opacity: 0.7;
+    filter: brightness(0.6) blur(1px); /* Dim and slightly blur */
+}
+.song-tile.secondary.left {
+    transform: translateX(-200px) scale(0.95) rotateY(20deg);
+}
+.song-tile.secondary.right {
+    transform: translateX(200px) scale(0.95) rotateY(-20deg);
+}
+
+/* Stacking Logic - Tertiary (Back) */
+.song-tile.tertiary {
+    z-index: 1;
+    opacity: 0.5;
+    filter: brightness(0.4) blur(2px); /* Dimmer and blurrier */
+}
+.song-tile.tertiary.left {
+    transform: translateX(-360px) scale(0.8) rotateY(30deg);
+}
+.song-tile.tertiary.right {
+    transform: translateX(360px) scale(0.8) rotateY(-30deg);
+}
+
+/* Song Info Overlay on Primary Tile */
+.song-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px;
+    background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+    text-align: left;
+}
+.song-info h3 {
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+    color: var(--pink);
+}
+
+
+/* --- PLAYLIST LINKS --- */
+.playlist-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns for desktop */
+    gap: 40px;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.playlist-tile {
+    display: block;
+    position: relative;
+    border-radius: 25px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.4s ease;
+}
+
+.playlist-tile:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(255, 77, 109, 0.3);
+}
+
+.playlist-tile img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    filter: brightness(0.7);
+    transition: 0.4s;
+}
+
+.playlist-tile:hover img {
+    filter: brightness(1);
+    transform: scale(1.05);
+}
+
+.playlist-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.playlist-info h3 {
+    font-size: 1.5rem;
+}
+
+.playlist-info p {
+    color: var(--pink);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 900px) {
+    /* Flatten and scroll the song stack */
+    .song-stack-wrapper {
         height: auto;
+        overflow-x: auto; /* Enable horizontal scroll */
+        padding: 30px 0;
+        perspective: none; /* Remove 3D */
+        /* Hide scrollbar for cleaner look */
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+    .song-stack-wrapper::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+    
+    .song-stack {
+        display: flex;
+        gap: 25px;
+        width: auto;
+        height: auto;
+        padding: 0 30px; /* Add padding for scroll snapping */
     }
 
-    .hero-left-content {
-        text-align: center;
-        margin-top: -50px; /* Pull text up over the tree slightly */
+    .song-tile {
+        position: relative; /* Not absolute anymore */
+        width: 240px;
+        height: 240px;
+        flex-shrink: 0; /* Don't squish */
+        transform: none !important; /* Reset all 3D transforms */
+        opacity: 1 !important;
+        filter: brightness(0.8); /* Slightly dim all */
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
-
-    .hero-right-visual {
-        height: 50vh; /* Smaller tree on mobile */
-        width: 100%;
+    
+    /* Make the primary one stand out a bit */
+    .song-tile.primary {
+        transform: scale(1.08) !important;
+        filter: brightness(1);
+        box-shadow: 0 15px 30px rgba(255, 77, 109, 0.4);
+    }
+    
+    /* Stack playlists vertically */
+    .playlist-links {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .playlist-tile img {
+        height: 220px; /* Slightly shorter for mobile */
     }
 }
